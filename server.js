@@ -55,6 +55,7 @@ function flipACoin(call) {
   
 app.get('/app', (req, res) => {
     res.status(200).end("OK")
+    res.type('text/plain')
 })
 
 app.use(function(req, res) {

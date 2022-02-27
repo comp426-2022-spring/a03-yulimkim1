@@ -53,8 +53,9 @@ function flipACoin(call) {
     return {"call": call, "flip": coin_flip, "result": match};
   }
   
-
-
+app.get('/app', (req, res) => {
+    res.status(200).end("OK")
+})
 
 app.use(function(req, res) {
     res.status(404).send("Endpoint does not exist")

@@ -58,10 +58,17 @@ app.get('/app', (req, res) => {
     res.status(200).end("OK")
     res.type('text/plain')
 })
-
+app.get('/app/flip', (req, res) => {
+    res.status(200).json({'flip': coinFlip()})
+})
 app.get('/app/flips/:number', (req, res) => {
     res.status(200).json({'raw': coinFlips(req.params.number), 'summary': countFlips(coinFlips(req.params.number))})
-    res.type('text/plain')
+})
+app.get('/app/flip/call/tails', (req, res) => {
+    res.status(200).json(flipACoin('tails'))
+})
+app.get('/app/flip/call/heads', (req, res) => {
+    res.status(200).json(flipACoin('heads'))
 })
 
 app.use(function(req, res) {
@@ -69,6 +76,3 @@ app.use(function(req, res) {
     res.type("text/plain")
 })
 
-app.get('/app/flip', (req, res) => {
-    res.status(200).json({'flip': coinFlip()})
-})

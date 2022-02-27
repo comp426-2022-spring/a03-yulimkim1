@@ -1,6 +1,7 @@
-const { json } = require('body-parser')
 const express = require('express')
 const app = express()
+
+var args = require('minimist')(process.argv.slice(2))
 
 if (args['port'] === undefined) {
     port = 5000
@@ -16,6 +17,7 @@ const server = app.listen(port, () => {
 function coinFlip() {
     return (Math.floor(Math.random() * 2) == 0) ? 'heads' : 'tails';
   }
+
 function coinFlips(flips) {
     let f = [];
     for (var i = 0; i < flips; i++) {
@@ -24,6 +26,7 @@ function coinFlips(flips) {
     }
     return f;
   }
+
 function countFlips(array) {
     let heads_count = 0;
     let tails_count = 0;
@@ -53,7 +56,8 @@ function flipACoin(call) {
     }
     return {"call": call, "flip": coin_flip, "result": match};
   }
-  
+
+//endpoints
 app.get('/app', (req, res) => {
     res.status(200).end("OK")
     res.type('text/plain')
@@ -70,7 +74,6 @@ app.get('/app/flip/call/tails', (req, res) => {
 app.get('/app/flip/call/heads', (req, res) => {
     res.status(200).json(flipACoin('heads'))
 })
-
 app.use(function(req, res) {
     res.status(404).send("Endpoint does not exist")
     res.type("text/plain")

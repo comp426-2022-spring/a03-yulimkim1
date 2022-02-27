@@ -1,13 +1,11 @@
+import minimist from 'minimist'
+import express from 'express'
+
+var args = minimist(process.argv.slice(2))
+
 const express = require('express')
 const app = express()
-
-var args = require('minimist')(process.argv.slice(2))
-
-if (args['port'] === undefined) {
-    port = 5000
-} else {
-    port = args['port']
-}
+const port = args.port || process.env.PORT || 5000
 
 const server = app.listen(port, () => {
     console.log('App is running on port %PORT%'.replace('%PORT%', port))

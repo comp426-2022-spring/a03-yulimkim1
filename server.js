@@ -3,7 +3,7 @@ import express from 'express'
 
 var args = minimist(process.argv.slice(2))
 
-const express = require('express')
+//const express = require('express')
 const app = express()
 const port = args.port || process.env.PORT || 5000
 
